@@ -1,0 +1,26 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" Environment
+set ruler
+set ignorecase
+set hlsearch
+set number
+set undofile
+set termguicolors
+
+" Tabbing
+set softtabstop=4
+set tabstop=4
+set shiftwidth=4
+set expandtab
+retab
+
+" Colors!
+syntax enable
+let g:one_allow_italics = 1
+colorscheme evening
+set background=dark
+hi Normal guibg=NONE ctermbg=NONE
+
+set autoindent
