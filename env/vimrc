@@ -19,7 +19,6 @@ retab
 " Colors!
 syntax enable
 hi LineNr ctermfg=gray
-colorscheme elflord
 set background=dark
 
 set autoindent
