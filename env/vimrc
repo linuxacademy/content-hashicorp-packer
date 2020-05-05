@@ -18,9 +18,8 @@ retab
 
 " Colors!
 syntax enable
-let g:one_allow_italics = 1
-colorscheme evening
+hi LineNr ctermfg=gray
+colorscheme elflord
 set background=dark
-hi Normal guibg=NONE ctermbg=NONE
 
 set autoindent
