@@ -4,7 +4,7 @@
   tasks:
     - name: Install required system packages
       apt: name={{ item }} state=latest update_cache=yes
-      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python-pip', 'virtualenv', 'python-setuptools']
+      loop: [ 'apt-transport-https', 'ca-certificates', 'curl', 'software-properties-common', 'python-pip-whl', 'virtualenv', 'python-setuptools']
 
     - name: Add Docker GPG apt Key
       apt_key:
