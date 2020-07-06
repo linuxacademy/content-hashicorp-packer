@@ -1,5 +1,6 @@
 ---
-- become: true
+- hosts: default
+  become: true
   tasks:
   - name: Install Apache packages 
     apt:
