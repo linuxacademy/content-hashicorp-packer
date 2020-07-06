@@ -14,7 +14,7 @@
       mode: '0755'
   - name: Copy website
     copy:
-      path: /var/www/html/bookapp
+      dest: /var/www/html/bookapp
       src: /home/cloud_user/ansible/files/bookapp/
       owner: www-data
   - name: Add website configuration
@@ -22,6 +22,10 @@
       path: /etc/apache2/sites-available/
       src: /home/cloud_user/ansible/files/bookapp.conf
       owner: root
+  - name: Disable default website
+    command: a2dissite 000-default.conf
+  - name: Enable Bookapp website
+    command: a2ensite bookapp.conf
   - name: Ensure Apache is running
     service:
       name: apache2
