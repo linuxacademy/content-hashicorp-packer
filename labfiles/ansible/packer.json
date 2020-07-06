@@ -36,14 +36,6 @@
             "inline": [
                 "sudo apt-get update -y && sudo apt-get upgrade -y"
             ]
-        },
-        {
-            "type": "shell",
-            "scripts": [
-                "scripts/init.sh",
-                "scripts/webdeploy.sh"
-            ],
-            "environment_vars": ["HOSTNAME=bookapp"]
         }
     ]
 }
