@@ -6,21 +6,21 @@
       name: apache2
       state: present
   - name: Create website root
-      file:
-        path: /var/www/html/bookapp
-        state: directory
-        owner: www-data
-        mode: '0755'
+    file:
+      path: /var/www/html/bookapp
+      state: directory
+      owner: www-data
+      mode: '0755'
   - name: Copy website
-      copy:
-        path: /var/www/html/bookapp
-        src: /home/cloud_user/ansible/files/bookapp/
-        owner: www-data
+    copy:
+      path: /var/www/html/bookapp
+      src: /home/cloud_user/ansible/files/bookapp/
+      owner: www-data
   - name: Add website configuration
-      file:
-        path: /etc/apache2/sites-available/
-        src: /home/cloud_user/ansible/files/bookapp.conf
-        owner: root
+    file:
+      path: /etc/apache2/sites-available/
+      src: /home/cloud_user/ansible/files/bookapp.conf
+      owner: root
   - name: Ensure Apache is running
     service:
       name: apache2
