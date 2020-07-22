@@ -1,4 +1,4 @@
-node packer-web.ec2.internal {
+node default {
 
  class { 'apache':
    default_vhost => false,
