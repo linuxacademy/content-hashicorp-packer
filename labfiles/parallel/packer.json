@@ -38,8 +38,7 @@
         },
         {
             "type": "shell",
-            "script": "scripts/init.sh",
-            "environment_vars": ["HOSTNAME=bookapp"]
+            "script": "scripts/init.sh"
         }
     ]
 }

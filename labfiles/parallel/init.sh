@@ -5,7 +5,6 @@ if (( $EUID != 0 )); then
     SUDO='sudo'
 fi
 
-$SUDO hostnamectl set-hostname $HOSTNAME
 $SUDO apt update && $SUDO apt upgrade -y
 $SUDO apt install apache2 -y
 $SUDO mkdir -p /var/www/html/bookapp
