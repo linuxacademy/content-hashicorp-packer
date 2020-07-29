@@ -7,7 +7,7 @@ fi
 
 $SUDO hostnamectl set-hostname $HOSTNAME
 $SUDO apt update && $SUDO apt upgrade -y
-$SUDO apt install apache2 
+$SUDO apt install apache2 -y
 $SUDO mkdir -p /var/www/html/bookapp
 $SUDO mv /tmp/bookapp/* /var/www/html/bookapp/
 $SUDO mv /tmp/bookapp.conf /etc/apache2/sites-available/
