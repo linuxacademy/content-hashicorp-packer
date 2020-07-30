@@ -27,6 +27,7 @@
       docker_image:
         build:
           path: /home/ubuntu/app/
+          pull: yes
         name: taskapp
         tag: v1
         source: build
