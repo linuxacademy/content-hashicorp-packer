@@ -1,6 +1,6 @@
 disable_default_site:
   apache_site.disabled:
-    - name: default
+    - name: 000-default
 
 {% for site, arg in salt['pillar.get']('apache:vhosts', {}).items() %}
 
@@ -11,7 +11,7 @@ disable_default_site:
 
 {{ site }}_vhost_gen:
   apache.configfile:
-    - name: /var/www/html/{{ site }}
+    - name: /etc/apache2/sites-available/{{ site }}.conf
     - config:
       - VirtualHost:
           this: '*:80'
@@ -25,6 +25,6 @@ disable_default_site:
 
 enable_{{ site }}_site:
   apache_site.enabled:
-    - name: {{ site }}
+    - name: {{ site }}.conf
 
 {% endfor %}
