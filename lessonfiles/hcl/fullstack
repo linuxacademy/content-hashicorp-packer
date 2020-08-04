@@ -1,0 +1,35 @@
+source "amazon-ebs" "aws-ubuntu" {
+    access_key = "UPDATE_ME"
+    secret_key = "UPDATE_ME"
+    region = "us-east-1"
+    instance_type = "t2.micro"
+    ami_name = "docker-app_packer-{{timestamp}}"
+    source_ami_filter {
+        filters = {
+            virtualization-type = "hvm"
+            name = "ubuntu/images/*ubuntu-focal-20.04-amd64-server-*"
+            root-device-type = "ebs"
+        }
+        owners = ["099720109477"]
+        most_recent = true
+    }
+
+    ssh_username = "ubuntu"
+}
+
+build {
+    sources = ["source.amazon-ebs.aws-ubuntu"]
+
+    provisioner "shell" {
+        script = "scripts/prom-init.sh"
+    }
+
+    provisioner "file" {
+        source = "prometheus.service"
+        destination = "/tmp"
+    }
+
+    provisioner "shell" {
+        script = "scripts/prom-post.sh"
+    }
+}

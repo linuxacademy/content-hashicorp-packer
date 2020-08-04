@@ -1,0 +1,42 @@
+{
+    "variables": {
+        "aws_access_key": "AKIAXDUKP5NXBCUQRFU4",
+        "aws_secret_key": "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"
+    },
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "us-east-1",
+            "instance_type": "t2.micro",
+            "ami_name": "first-ami-test-{{timestamp}}",
+            "source_ami_filter": {
+                "filters": {
+                    "virtualization-type": "hvm",
+                    "name": "ubuntu/images/*ubuntu-focal-20.04-amd64-server-*",
+                    "root-device-type": "ebs"
+                },
+            "owners": ["099720109477"],
+            "most_recent": true
+            },
+            "ssh_username": "ubuntu"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sudo apt update -y && sudo apt upgrade -y",
+                "sudo mkdir /srv/salt && sudo mkdir /srv/pillar",
+                "sudo chown ubuntu:ubuntu /srv/salt",
+                "sudo chown ubuntu:ubuntu /srv/pillar"
+            ]
+        },
+        {
+            "type": "salt-masterless",
+            "local_state_tree": "salt",
+            "local_pillar_roots": "pillar"
+        }
+    ]
+}
