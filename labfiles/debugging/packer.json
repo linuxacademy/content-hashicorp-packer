@@ -1,0 +1,25 @@
+{
+    "builders": [
+        {
+            "type": "lxd",
+            "image": "ubuntu:focal",
+            "name": "lxd-prom",
+            "init_sleep": "30"
+        }
+    ],
+    "provisioners": [
+        {
+            "type": "shell",
+            "script": "scripts/prom-init.sh"
+        },
+        {
+            "type": "file",
+            "source": "prometheus.service",
+            "destination": "/tmp/"
+        },
+        {
+            "type": "shell",
+            "script": "scripts/prom-post.sh"
+        }
+    ]
+}
