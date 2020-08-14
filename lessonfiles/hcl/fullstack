@@ -34,7 +34,7 @@ build {
 
     provisioner "file" {
         source = "prometheus.service"
-        destination = "/tmp"
+        destination = "/tmp/"
     }
 
     provisioner "shell" {
