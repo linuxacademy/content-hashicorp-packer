@@ -17,8 +17,16 @@ source "amazon-ebs" "aws-ubuntu" {
     ssh_username = "ubuntu"
 }
 
+source "lxd" "ubuntu" {
+    image = "ubuntu:focal"
+    init_sleep = "30"
+}
+
 build {
-    sources = ["source.amazon-ebs.aws-ubuntu"]
+    sources = [
+        "source.amazon-ebs.aws-ubuntu",
+        "source.lxd.ubuntu"
+    ]
 
     provisioner "shell" {
         script = "scripts/prom-init.sh"
@@ -26,7 +34,7 @@ build {
 
     provisioner "file" {
         source = "prometheus.service"
-        destination = "/tmp"
+        destination = "/tmp/"
     }
 
     provisioner "shell" {
